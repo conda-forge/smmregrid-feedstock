@@ -1,5 +1,5 @@
 {% set name = "smmregrid" %}
-{% set version = "0.1.5" %}
+{% set version = "0.1.6" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/smmregrid-{{ version }}.tar.gz
-  sha256: c8738d0117a5bfc06dd57008c17cd4dc3ae3f89b99b73311d5440002340cdf92
+  sha256: bffd83c4fdffe04d41165cc7e13e19c9bc8e6ce5f33836414137d64d991cf27b
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
