@@ -13,8 +13,7 @@ build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
   noarch: python
-  string: linux_pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [linux]
-  string: osx_pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}    # [osx]
+  string: {{ "linux" if linux else "osx" }}_pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
 
 requirements:
   host:
