@@ -13,6 +13,8 @@ build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
   noarch: python
+  string: linux_pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [linux]
+  string: osx_pyh{{ PKG_HASH }}_{{ PKG_BUILDNUM }}    # [osx]
 
 requirements:
   host:
@@ -22,16 +24,17 @@ requirements:
     - pip
   run:
     - python >={{ python_min }}
+    - __linux  # [linux]
+    - __osx    # [osx]
     - numpy
     - xarray
     - dask-core
     - netcdf4
     - cfgrib
     - sparse
-    - python-cdo
     - numba
     - cfunits
-    - cdo >=2.5.0
+    - cdo >=2.6.5  # [linux]
 
 test:
   requires:
@@ -41,12 +44,18 @@ test:
     - smmregrid
   commands:
     - pip check
+    - python -c "import smmregrid; print(smmregrid.check_cdo_version())"  # [linux]
 
 about:
   home: https://github.com/jhardenberg/smmregrid
   summary: Regridding based on sparse matrix multiplication
+  description: |
+    On macOS CDO is not shipped: install it with Homebrew (brew install cdo)
+    or point the CDO environment variable to the binary.
   license: Apache-2.0
   license_file: LICENSE
+  dev_url: https://github.com/jhardenberg/smmregrid
+  doc_url: https://smmregrid.readthedocs.io
 
 extra:
   recipe-maintainers:
