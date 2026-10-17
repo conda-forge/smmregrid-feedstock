@@ -9,6 +9,14 @@ Package license: Apache-2.0
 
 Summary: Regridding based on sparse matrix multiplication
 
+Development: https://github.com/jhardenberg/smmregrid
+
+Documentation: https://smmregrid.readthedocs.io
+
+On macOS CDO is not shipped: install it with Homebrew (brew install cdo)
+or point the CDO environment variable to the binary.
+
+
 Current build status
 ====================
 
